@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<title>market</title>
+<h1>market</h1>
+<body>
+
+    <table>
+        <tr>
+            <th>name</th>
+            <th>player</th>
+            <th>ability</th>
+            <th>luck</th>
+            <th>price</th>
+        </tr>
+
+
+        {% for x in mytreasure.find({'onsale':1}) %}
+        <tr>
+            <td>{{x.name}}</td>
+            <td>{{x.player}}</td>
+            <td>{{x.ability}}</td>
+            <td>{{x.luck}}</td>
+            <td>{{x.price}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form action="" method="POST">
+        <input type="text" name="buyer">want to buy<input type="text" name="item">
+    <input type="submit" value="submit">
+    </form>
+</body>

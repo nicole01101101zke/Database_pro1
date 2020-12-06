@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+</head>
+<body>
+{{username}}的个人中心 <br>
+<p>金钱:{{ myplayer.find_one({"name":username}).money}}</p> <br>
+<p>所持工具:{{ myplayer.find_one({"name":username}).tool}}</p> <br>
+<p>工作能力:{{ mytreasure.find_one({"name":myplayer.find_one({"name":username}).tool}).ability}}</p> <br>
+<p>所戴配饰:{{ myplayer.find_one({"name":username}).jewelry}}</p> <br>
+<p>运气:{{ mytreasure.find_one({"name":myplayer.find_one({"name":username}).jewelry}).luck}}</p> <br>
+<p>宝物箱:{{ myplayer.find_one({"name":username}).treasure}}</p> <br>
+<p>我出售的宝物:</p> <br>
+<table>
+        <tr>
+            <th>宝物名</th>
+            <th>价格</th>
+        </tr>
+        {% for x in mytreasure.find({"player":username,"onsale":1}) %}
+        <tr>
+            <td>{{x.name}}</td>
+            <td>{{x.price}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<p><a href="{{ url_for('market') }}" rel="external nofollow" >进入宝物商城</a></p> <br>
+</body>
+</html>
